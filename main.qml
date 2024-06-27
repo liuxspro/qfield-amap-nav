@@ -1,16 +1,13 @@
 import QtQuick
 import QtQuick.Controls
 
-import QtCore
 import org.qgis 1.0
 import org.qfield 1.0
 
 import Theme 1.0
 
 Item {
-  property var mainWindow: iface.mainWindow()
   property var canvasMenu: iface.findItemByObjectName('canvasMenu')
-  property var position: iface.findItemByObjectName('positionSource')
   property var mapCanvas: iface.findItemByObjectName('mapCanvas')
 
   Component.onCompleted: {
@@ -32,8 +29,6 @@ Item {
       openAMap(wgs_84_point.y, wgs_84_point.x)
     }
   }
-
-
 
   function openAMap(lat, lon)
   {
