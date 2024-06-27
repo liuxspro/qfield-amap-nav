@@ -21,7 +21,7 @@ Item {
   MenuItem {
     id: amapnavto
     width: parent.width
-    text: qsTr("使用高德地图进行导航")
+    text: qsTr("使用高德地图进行导航至此位置")
     height: 48
     leftPadding: Theme.menuItemLeftPadding
     font: Theme.defaultFont
