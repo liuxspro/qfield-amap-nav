@@ -24,19 +24,23 @@ Item {
     font: Theme.defaultFont
     icon.source: Theme.getThemeVectorIcon( "ic_compass_arrow_24dp" ) // 如何自定义图标?
     onTriggered: {
-      // 将地图坐标转换为 WGS84 坐标
-      const wgs_84_point = GeometryUtils.reprojectPointToWgs84(canvasMenu.point, mapCanvas.mapSettings.destinationCrs)
-      openAMap(wgs_84_point.y, wgs_84_point.x)
+      if (Qt.platform.os === 'android')
+      { // 将地图坐标转换为 WGS84 坐标
+        const wgs_84_point = GeometryUtils.reprojectPointToWgs84(canvasMenu.point, mapCanvas.mapSettings.destinationCrs)
+        openAMap(wgs_84_point.y, wgs_84_point.x)
+      } else {
+      iface.mainWindow().displayToast(`不支持${Qt.platform.os}平台的导航`)
     }
   }
+}
 
-  function openAMap(lat, lon)
-  {
-    // 参考: https://lbs.amap.com/api/amap-mobile/guide/android/route
-    // 注意需要国测加密, 将 dev 设置为 1
-    const uri = `amapuri://route/plan/?dlat=${lat}&dlon=${lon}&dname=来自QField的位置&dev=1&t=0`
-    Qt.openUrlExternally(uri)
-  }
+function openAMap(lat, lon)
+{
+  // 参考: https://lbs.amap.com/api/amap-mobile/guide/android/route
+  // 注意需要国测加密, 将 dev 设置为 1
+  const uri = `amapuri://route/plan/?dlat=${lat}&dlon=${lon}&dname=来自QField的位置&dev=1&t=0`
+  Qt.openUrlExternally(uri)
+}
 
 
 }
