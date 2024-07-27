@@ -18,11 +18,22 @@ Item {
   MenuItem {
     id: amapnavto
     width: parent.width
-    text: qsTr("使用高德地图导航至此位置")
     height: 48
     leftPadding: Theme.menuItemLeftPadding
-    font: Theme.defaultFont
-    icon.source: Theme.getThemeVectorIcon( "ic_compass_arrow_24dp" ) // 如何自定义图标?
+
+    QfToolButton {
+      id: amapicon
+      iconSource: 'icon.svg'
+    }
+    Text {
+      id: amaptext
+      anchors.verticalCenter: parent.verticalCenter
+      leftPadding: Theme.menuItemLeftPadding + 36
+      text: qsTr("使用高德地图导航至此位置")
+      font: Theme.defaultFont
+      color: Theme.mainTextColor
+    }
+
     onTriggered: {
       if (Qt.platform.os === 'android')
       { // 将地图坐标转换为 WGS84 坐标

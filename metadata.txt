@@ -3,5 +3,5 @@ name=AMAP NAV
 description=在QField中使用高德地图进行导航
 author=liuxs.pro
 icon=icon.svg
-version=0.0.2
+version=0.0.3
 homepage=https://github.com/liuxspro/qfield-amap-nav
